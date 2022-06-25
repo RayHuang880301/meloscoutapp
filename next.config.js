@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/meloscoutapp',
-  assetPrefix: '/meloscoutapp/',
+  // basePath: '/',
+  // assetPrefix: '/out/',
   reactStrictMode: true,
   images: {
     loader: 'akamai',
