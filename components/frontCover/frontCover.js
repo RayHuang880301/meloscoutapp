@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 const FrontCover = () => {
 	const { data: account } = useAccount();
 	const { data: ensName } = useEnsName({ address: account?.address });
-	const { data: connectData, connect } = useConnect({
+	const { data: connectData, connect, error } = useConnect({
 		connector: new InjectedConnector(),
 	});
 	const { disconnect } = useDisconnect();
@@ -99,7 +99,17 @@ const FrontCover = () => {
 			customClass: {
 				confirmButton: 'confirm-button-class'
 			},
+		});
+	};
 
+	const connectError = () => {
+		Swal.fire({
+			icon: 'warning',
+			title: 'Need to install Metamask Wallet',
+			confirmButtonColor: '#FFF732',
+			customClass: {
+				confirmButton: 'confirm-button-class'
+			},
 		});
 	};
 	useEffect(() => {
@@ -140,6 +150,7 @@ const FrontCover = () => {
 				<Image src={logo} width={394} height={246} alt=''/>
 			</div>
 			{!account && <button className={styles.btn} onClick={() => connect()}>Connect</button>}
+			{error && <div {...connectError()}></div>}
 			{account && 
 			<div className={styles.mintCard}>
 				<div className={styles.mintCounter}>
