@@ -1,8 +1,17 @@
 import React from 'react';
 import '../styles/globals.css';
-import { WagmiConfig, createClient } from 'wagmi';
+import { WagmiConfig, createClient, configureChains, defaultChains, chain } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
 
-const client = createClient();
+const { chains, provider } = configureChains(
+	[chain.mainnet],
+	[publicProvider()],
+);
+
+const client = createClient({
+	autoConnect: false,
+	provider,
+});
 
 
 function MyApp({ Component, pageProps }) {
