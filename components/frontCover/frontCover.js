@@ -158,7 +158,7 @@ const FrontCover = () => {
 				<div className={styles.mediaBox}>
 					<Link href="https://twitter.com/meloscout_nft"><a target="_blank" rel="noreferrer"><Image src={twLogo} width={50} height={50} alt=''/></a></Link>
 					<Link href="https://discord.com/invite/dM4bdgkRAK"><a target="_blank" rel="noreferrer"><Image src={dcLogo} width={50} height={50} alt=''/></a></Link>
-					<Link href="https://opensea.io/collection/meloscoutnft"><a><Image src={osLogo} width={50} height={50} alt=''/></a></Link>
+					<Link href="https://opensea.io/collection/meloscoutnft"><a target="_blank" rel="noreferrer"><Image src={osLogo} width={50} height={50} alt=''/></a></Link>
 				</div>
 			</div>
 			{address && <button className={styles.profile} onClick={() => disconnect()}>{ensName ?? profile}</button>} 
