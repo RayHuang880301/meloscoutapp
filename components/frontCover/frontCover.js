@@ -72,32 +72,31 @@ const FrontCover = () => {
 	}, [connectData]);
 
   
-	const price = '0.38';
-	const { data, isError, isLoading, writeAsync } = useContractWrite(
-		{
-			addressOrName: CONTACT_ADDRESS,
-			contractInterface: CONTACT_ABI,
-			functionName: 'preSaleMint',
-			args: [proof],
-			overrides: {
-				value: ethers.utils.parseEther(price),
-			},
-		}
-	);
-
-	// const price = '0.4';
+	// const price = '0.38';
 	// const { data, isError, isLoading, writeAsync } = useContractWrite(
 	// 	{
 	// 		addressOrName: CONTACT_ADDRESS,
 	// 		contractInterface: CONTACT_ABI,
-	// 	},
-	// 	'publicMint',{
-	// 		args: [mintNum],
+	// 		functionName: 'preSaleMint',
+	// 		args: [proof],
 	// 		overrides: {
-	// 			value: ethers.utils.parseEther(price).mul(mintNum),
+	// 			value: ethers.utils.parseEther(price),
 	// 		},
 	// 	}
 	// );
+
+	const price = '0.4';
+	const { data, isError, isLoading, writeAsync } = useContractWrite(
+		{
+			addressOrName: CONTACT_ADDRESS,
+			contractInterface: CONTACT_ABI,
+			functionName: 'publicMint',
+			args: [mintNum],
+			overrides: {
+				value: ethers.utils.parseEther(price).mul(mintNum),
+			},
+		}
+	);
 
 	const mint = async () => {
 	  if(connectedChainId==validChainId) {
@@ -170,9 +169,9 @@ const FrontCover = () => {
 			{address && 
 			<div className={styles.mintCard}>
 				<div className={styles.mintCounter}>
-					<button className={styles.countBtn}><Image src={min} width={15} height={10} alt=''/></button>
+					<button className={styles.countBtn} onClick={() => subMintNum()}><Image src={min} width={15} height={10} alt=''/></button>
 					<div className={styles.countNum}>{mintNum}</div>
-					<button className={styles.countBtn}><Image src={add} width={20} height={15} alt=''/></button>
+					<button className={styles.countBtn} onClick={() => addMintNum()}><Image src={add} width={20} height={15} alt=''/></button>
 				</div>
 				<button className={styles.mintBtn} onClick={() => mint()}>Mint</button>
 				<div className={styles.mintData}>{totalSupply}/888 minted <br/>
